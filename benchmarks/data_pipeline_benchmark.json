@@ -1,0 +1,12 @@
+{
+  "pipeline_phase": "Phase 1: Ingestion & Temporal Validation Split",
+  "timestamp": "2026-11-19T00:21:21.522668",
+  "execution_time_seconds": 3.2144,
+  "total_subscribers_processed": 50000,
+  "total_transactions_processed": 99772,
+  "total_user_logs_processed": 150000,
+  "temporal_cutoff_applied": "20170228",
+  "compression": "snappy",
+  "file_format": "apache_parquet",
+  "memory_optimization": "Polars streaming column projection"
+}
