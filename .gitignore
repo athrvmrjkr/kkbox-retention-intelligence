@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# Data caches (Raw & processed data must never be committed to git)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.csv
+*.parquet
+*.tsv
+*.tar.gz
+*.zip
+*.7z
+
+# Model weights & serialized artifacts
+models/*
+!models/.gitkeep
+*.pkl
+*.joblib
+*.bin
+*.onnx
+
+# Agent skills, Socratic tools & local caches
+.agents/
+.rederive/
+skills-lock.json
+
+# Logs, testing & profiling artifacts
+*.log
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+benchmarks/*.raw.json
+
+# Environment variables & secrets
+.env
+.env.*
+*.token
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

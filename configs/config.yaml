@@ -1,0 +1,47 @@
+# Enterprise Telecom CVM Configuration
+system:
+  project_name: "telecom-cvm-retention"
+  version: "1.0.0"
+  random_seed: 42
+
+huggingface:
+  repo_id: "athrvmrjkr/telecom-cvm-kkbox"
+  dataset_type: "parquet"
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  models_dir: "models"
+  benchmarks_dir: "benchmarks"
+
+temporal_validation:
+  # Strict chronological cutoffs to prevent future-data leakage
+  observation_window_days: 60
+  prediction_window_days: 30
+  train_cutoff_date: "2017-02-28"
+  test_cutoff_date: "2017-03-31"
+
+data_quality:
+  age_min_valid: 14
+  age_max_valid: 85
+  impute_strategy: "median"
+
+model:
+  champion: "lightgbm"
+  baseline: "logistic_regression"
+  scale_pos_weight: "auto" # Accounts for ~11% churn class imbalance
+  n_estimators: 300
+  learning_rate: 0.05
+  num_leaves: 31
+  calibration_method: "isotonic"
+
+business_utility:
+  # Net Profit(T) = TP(T) * (CLV * retention_rate - cost_offer) - FP(T) * cost_offer
+  estimated_clv: 120.0
+  retention_success_rate: 0.65
+  retention_offer_cost: 15.0
+
+serving:
+  host: "0.0.0.0"
+  port: 8000
+  p95_latency_sla_ms: 45.0
